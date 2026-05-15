@@ -1,0 +1,12 @@
+/* ==========================================================================
+   BOX SIZING RESET
+   Source: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+   Notes: Makes all elements include padding/border in their width calculations.
+   ========================================================================== */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
