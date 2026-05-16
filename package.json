@@ -1,0 +1,24 @@
+{
+  "name": "crcp6340project",
+  "version": "1.0.0",
+  "description": "A personal NFT mint for an artist",
+  "type": "module",
+  "homepage": "https://github.com/blue2233/CRCP6340Project#readme",
+  "bugs": {
+    "url": "https://github.com/blue2233/CRCP6340Project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blue2233/CRCP6340Project.git"
+  },
+  "license": "MIT",
+  "author": "Nic Nurge",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
