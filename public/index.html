@@ -16,7 +16,7 @@
 <body>
   <div class="b-example-divider"></div>
 
-  <header class="p-3 text-bg-dark">
+  <header class="p-3 text-bg-dark sticky-top">
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -72,7 +72,7 @@
 
 
 
-  <div class="container col-xxl-8 px-4 py-5">
+  <!-- <div class="container col-xxl-8 px-4 py-5"> -->
 <div class="row align-items-start g-5 py-5">
      
 <div class="col-10 col-sm-8 col-lg-6">
@@ -89,7 +89,10 @@
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold lh-1 mb-3">Featured Project</h1>
          <h1 class="display-5 fw-normal lh-1 mb-3">>>
-                <button type="button" class="btn btn-outline-light">ALL PROJEKTS</button></h1>
+                <!-- <button type="button" class="btn btn-outline-light">ALL PROJEKTS</button></h1> -->
+                <a href="./projects.html" class="btn btn-outline-secondary btn-lg px-4">ALL PROJEKTS </a></h1>
+        <div class="col-lg-8">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       </div>
     </div>
   </div>
@@ -114,12 +117,59 @@
       <p>A lot of my creative work lives in the space between digital art, Web3, generative systems, and interactive design. I like the idea of using technology as more than just a productivity machine slowly stealing everyone’s will to live. For me, creative tech is about building small worlds, visual systems, and experiences that feel personal, even when they are made with code, algorithms, or tools that sound like they were named by a committee of exhausted robots.</p>
       <p>This site is a collection of experiments, class projects, visual artifacts, and whatever else survives the process without catching fire. Some pieces are polished, some are prototypes, and some are probably evidence that I clicked “run” one too many times and decided to call the result art. Either way, the goal is to keep building, learning, and creating work that blends technical skill with a little personality, because “technically functional” is not exactly a personality trait.</p>
       <div class="d-grid gap-3 d-sm-flex mt-4">
-        <button type="button" class="btn btn-outline-light">Selected Projects</button>
-        <button type="button" class="btn btn-outline-light">Selected Artists</button>
+        <button type="button" class="btn btn-outline-light">Featured Projects</button>
+        <button type="button" class="btn btn-outline-light">Explore Artists</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<div class="container px-4 py-5">
+  <h2 class="text-center pb-4">Selected Projects</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="col">
+      <div class="card h-100 border-dark">
+        <img src="./images/project1.png" class="card-img-top" alt="Project 1">
+        <div class="card-body text-center">
+          <h5 class="card-title">Project 1 Title</h5>
+          <p class="card-text text-muted">artist name</p>
+          <a href="./project.html" class="btn btn-primary">Project Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-dark">
+        <img src="./images/project2.png" class="card-img-top" alt="Project 2">
+        <div class="card-body text-center">
+          <h5 class="card-title">Project 2 Title</h5>
+          <p class="card-text text-muted">artist name</p>
+          <a href="./project.html" class="btn btn-primary">Project Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 border-dark">
+        <img src="./images/project3.png" class="card-img-top" alt="Project 3">
+        <div class="card-body text-center">
+          <h5 class="card-title">Project 3 Title</h5>
+          <p class="card-text text-muted">artist name</p>
+          <a href="./project.html" class="btn btn-primary">Project Profile</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="text-center mt-4">
+    <a href="./projects.html" class="btn btn-outline-light">See All Projects</a>
+  </div>
+</div>
+
+
 
 
 <div class="container">
@@ -131,7 +181,7 @@
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact Us</a></li>
+      <li class="nav-item"><a href="./contact.html" class="nav-link px-2 text-muted">Contact Us</a></li>
     </ul>
   </footer>
 </div>

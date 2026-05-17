@@ -4,7 +4,7 @@ const port = 3000
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { // this is basically a get request to the root of the website, which is the index.html file in the public folder
   res.send('Hello World!')
 })
 
