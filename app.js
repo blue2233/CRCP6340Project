@@ -4,9 +4,13 @@ const port = 3000
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => { // this is basically a get request to the root of the website, which is the index.html file in the public folder
-  res.send('Hello World!')
-})
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
+
+// app.post("/mail", (req, res) => {
+//   console.log("mail button clicked - great jerb.");
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
