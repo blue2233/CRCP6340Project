@@ -14,15 +14,17 @@
   "license": "MIT",
   "author": "Nic Nurge",
   "main": "app.js",
-  "scripts": { 
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon app.js",
     "start": "node app.js"
   },
   "devDependencies": {
     "nodemon": "3.1.14"
-},
+  },
   "dependencies": {
-    "express": "^5.2.1"
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemailer": "^8.0.7"
   }
 }
