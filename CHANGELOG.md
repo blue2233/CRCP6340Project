@@ -25,11 +25,14 @@
 - [ ] Fix `type=""image/x-icon"` typo in index.html 
 
 
+
+
 ##### IN-PROGRESS
 
-### Modification to splash/hero section
-- updated txt + hero art → splash-background-img.png created from .pde sketch
-- removed buttons from hero section
+### Fill missing Featured section data divs
+- add labeled divs for: Name, Description, Editions, Price, Opens
+- reworked the Featured section layout using 'features with title' boiler plate bootstrap
+- made some edits to the text of the About the Artist section
 
 ##### COMPLETED
 
@@ -54,3 +57,7 @@
 - Update About nav link → #about
 - Renamed Artist nav link to About; Contact nav link → ./contact.html
 
+### Modification to splash/hero section [X]
+- updated txt + hero art → splash-background-img.png created from .pde sketch
+- modified 'overlay div' text alignment → align-items-center + text-center
+- removed buttons from hero section 
