@@ -1,25 +1,7 @@
 # Milestone 1 - Changes
 
-## Favicon fix [X]
-- [X] Fix favicon to jump to top of index.html page
-  - Added `id="top"` to the `<body>` tag in `index.html` to create a named anchor target
-  - Changed header logo link from `href="/"` (full page reload) to `href="#top"` (in-page scroll, no reload)
-  - Restored and updated footer logo to also be a clickable link to `#top`
-  - Added `scroll-behavior: smooth` to `style.css` for animated scrolling
 
-## Changes to header + scroll behavior when flavicon is clicked [X]
-- changed 'Featured' to text-white
-- removed 'Projects'
-- added 'Contact'
-- added scroll-behavior: smooth; to style.css
-
-
-### Wire up nav links + add section anchors [X]
-- [X] Add `id="featured"` to the featured section div
-- [X] Add `id="about"` to the about section div
-- [X] Update "Featured" nav link → `#featured`
-- [X] Update "About" nav link → `#about`
-- [X] Renamed "Artist" nav link to "About"; "Contact" nav link → `./contact.html`
+##### IMPLEMENTATION PLAN
 
 ### Fill missing Featured section data divs
 - [ ] Add labeled divs for: Name, Description, Editions, Price, Opens
@@ -41,3 +23,34 @@
 ### Favicon consistency + typo fix
 - [ ] Update all pages to use `n-favicon.png`
 - [ ] Fix `type=""image/x-icon"` typo in index.html 
+
+
+##### IN-PROGRESS
+
+### Modification to splash/hero section
+- updated txt + hero art → splash-background-img.png created from .pde sketch
+- removed buttons from hero section
+
+##### COMPLETED
+
+## Favicon fix [X]
+- [X] Fix favicon to jump to top of index.html page
+  - Added `id="top"` to the `<body>` tag in `index.html` to create a named anchor target
+  - Changed header logo link from `href="/"` (full page reload) to `href="#top"` (in-page scroll, no reload)
+  - Restored and updated footer logo to also be a clickable link to `#top`
+  - Added `scroll-behavior: smooth` to `style.css` for animated scrolling
+
+## Changes to header + scroll behavior when flavicon is clicked [X]
+- changed 'Featured' to text-white
+- removed 'Projects'
+- added 'Contact'
+- added scroll-behavior: smooth; to style.css
+
+
+### Wire up nav links + add section anchors [X]
+- Add id=featured to the featured section div
+- Add id=about to the about section div
+- Update Featured nav link → featured
+- Update About nav link → #about
+- Renamed Artist nav link to About; Contact nav link → ./contact.html
+
