@@ -29,6 +29,11 @@ html {
 
 
 
+
+/* ==========================================================================
+                        CYBERPUNK NEON AESTHETIC STYLES
+   ========================================================================== */
+
 /* ##### NEON HEADING STYLES ##### */
 
 h1, h2 {
@@ -123,6 +128,123 @@ h3, h4 {
 .card.border-dark .card-text {
   color: #aaaaaa !important;
 }
+
+
+
+/* ##### HEADER ##### */
+
+header {
+  border-bottom: 2px solid #00f5ff;
+  animation: borderPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    border-bottom-color: #00f5ff;
+    box-shadow: 0 2px 12px rgba(0, 245, 255, 0.5);
+  }
+  50% {
+    border-bottom-color: #ff00ff;
+    box-shadow: 0 2px 20px rgba(255, 0, 255, 0.7);
+  }
+}
+
+/* Header favicon logo */
+header img {
+  filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.5));
+  transition: filter 0.3s ease;
+}
+
+header img:hover {
+  filter: drop-shadow(0 0 14px rgba(0, 245, 255, 0.9));
+}
+
+/* Header nav links - teal glow */
+header .nav-link {
+  color: #00f5ff !important;
+  text-shadow: 0 0 6px rgba(0, 245, 255, 0.5);
+  transition: all 0.25s ease;
+}
+
+header .nav-link:hover {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 8px #00f5ff,
+    0 0 20px #00f5ff;
+}
+
+
+
+/* ##### SECTION SEPARATORS ##### */
+
+/* .b-example-divider {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #00f5ff 30%,
+    #ff00ff 70%,
+    transparent
+  );
+  box-shadow: 0 0 6px #00f5ff, 0 0 15px rgba(0, 245, 255, 0.3);
+  margin: 0;
+  animation: scanpulse 3s ease-in-out infinite;
+}
+
+@keyframes scanpulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+} */
+
+/* ##### NEON FOOTER ##### */
+
+footer {
+  border-top: none !important;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  animation: footerLinePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes footerLinePulse {
+  0%, 100% {
+    background: #00f5ff;
+    box-shadow: 0 0 6px #00f5ff, 0 0 14px rgba(0, 245, 255, 0.6);
+  }
+  50% {
+    background: #ff00ff;
+    box-shadow: 0 0 6px #ff00ff, 0 0 14px rgba(255, 0, 255, 0.6);
+  }
+}
+
+/* Icon links - GitHub and envelope */
+footer .nav-link {
+  color: #aaaaaa;
+  transition: all 0.25s ease;
+}
+
+footer .nav-link:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 8px #ff00ff, 0 0 18px #ff00ff;
+}
+
+/* Center favicon logo */
+footer img {
+  filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.5));
+  transition: filter 0.3s ease;
+}
+
+footer img:hover {
+  filter: drop-shadow(0 0 14px rgba(0, 245, 255, 0.9));
+}
+
 
 
 
