@@ -23,129 +23,141 @@
 
   <!-- ##### HEADER ##### -->
 
-    <%- include('header') %>
+  <%- include('header') %>
 
 
 
 
-  <!-- ##### HERO / SPLASH SCREEN ##### -->
-  <div class="container-fluid px-0">
-    <div class="card text-bg-dark border-0 bg-transparent rounded-0 py-5">
-      <img src="./images/splash-background-img.png" class="card-img" alt="Splash">
-      <div class="card-img-overlay align-items-center text-center d-flex flex-column justify-content-end pb-5">
-        <h1 class="card-title display-5 fw-bold">Nordak's MACT NFT Project</h1>
+    <!-- ##### HERO / SPLASH SCREEN ##### -->
+    <div class="container-fluid px-0">
+      <div class="card text-bg-dark border-0 bg-transparent rounded-0 py-5">
+        <img src="./images/splash-background-img.png" class="card-img" alt="Splash">
+        <div class="card-img-overlay align-items-center text-center d-flex flex-column justify-content-end pb-5">
+          <h1 class="card-title display-5 fw-bold">Nordak's MACT NFT Project</h1>
+          <div class="col-lg-8">
+            <p class="card-text lead mb-5">Create your own unique NFTs or something like that.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ##### FEATURED ##### -->
+    <div id="featured" class="container col-xxl-8 px-4 py-5"></div>
+    <div class="b-example-divider"></div>
+
+    <div id="featured" class="container px-4 py-5">
+      <h2 class="pb-2 text-center">Featured Project</h2>
+
+      <div class="row row-cols-1 row-cols-md-2 align-items-md-start g-5 py-5">
+
+        <!-- LEFT: project image + card info -->
+        <div class="col-10 col-sm-8 col-lg-6">
+          <div class="card border-dark">
+            <img src="./images/arc-toroid.png" class="card-img-top" alt="Arc Toroid">
+            <div class="card-body text-center text-dark">
+              <h5 class="card-title">Arc Toroid</h5>
+              <p class="card-text text-muted">masterNordak</p>
+              <!-- <button type="button" class="btn btn-primary">Project Profile</button> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: NFT metadata fields -->
+        <div class="d-flex flex-column gap-3">
+
+          <div class="d-flex flex-column gap-2">
+            <h4 class="fw-normal mb-1">NFT Name:</h4>
+            <p class="text-muted mb-0">Arc Toroid</p>
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <h4 class="fw-normal mb-1">Description:</h4>
+            <p class="text-muted mb-0">Generative 3D toroidal form — Processing sketch series</p>
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <h4 class="fw-normal mb-1">Editions:</h4>
+            <p class="text-muted mb-0">1 / 1,000</p>
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <h4 class="fw-normal mb-1">Price:</h4>
+            <p class="text-muted mb-0">0.5 ETH</p>
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <h4 class="fw-normal mb-1">Opens:</h4>
+            <p class="text-muted mb-0">June 2026</p>
+          </div>
+
+          <div class="d-flex flex-column gap-3"></div>
+
+
+          <div class="d-flex flex-column gap-2 mt-3">
+            <a href="/project/1" class="btn btn-outline-light">Go to this project</a>
+            <a href="/projects" class="btn btn-outline-light">See all projects</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ##### ABOUT ##### -->
+    <div id="about" class="container px-4 py-5">
+      <h2 class="pb-2 mb-5 text-center">About the Artist</h2>
+      <!-- <p class="lead">Founding Artist</p> -->
+      <div class="row g-5 align-items-start">
+        <div class="col-10 col-sm-8 col-lg-4">
+          <div class="card border-dark">
+            <img src="./images/artist-photo.png" class="card-img-top" alt="Nic Nurge">
+            <div class="card-body text-center text-dark">
+              <h5 class="card-title">Nic Nurge</h5>
+              <p class="card-text text-muted">Digital Artist & Developer</p>
+              <!-- <button type="button" class="btn btn-primary">Artist's Profile</button> -->
+            </div>
+          </div>
+        </div>
         <div class="col-lg-8">
-          <p class="card-text lead mb-5">Create your own unique NFTs or something like that.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- ##### FEATURED ##### -->
-  <div id="featured" class="container col-xxl-8 px-4 py-5"></div>
-  <div class="b-example-divider"></div>
-
-  <div id="featured" class="container px-4 py-5">
-    <h2 class="pb-2 text-center">Featured Project</h2>
-
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-start g-5 py-5">
-
-      <!-- LEFT: project image + card info -->
-      <div class="col-10 col-sm-8 col-lg-6">
-        <div class="card border-dark">
-          <img src="./images/arc-toroid.png" class="card-img-top" alt="Arc Toroid">
-          <div class="card-body text-center text-dark">
-            <h5 class="card-title">Arc Toroid</h5>
-            <p class="card-text text-muted">masterNordak</p>
-            <!-- <button type="button" class="btn btn-primary">Project Profile</button> -->
+          <p>I’m a cybersecurity leader by day, creative technology student by night, and apparently a founding artist
+            now
+            because the internet lets us invent titles and put them on cards. My work usually starts somewhere between
+            code, systems, pixels, and “what happens if I break this in an interesting way?” I’m drawn to projects that
+            mix structure with weirdness, especially when I can take something technical and turn it into something
+            people
+            might actually want to look at.</p>
+          <p>A lot of my creative work lives in the space between digital art, Web3, generative systems, and interactive
+            design. I like the idea of using technology as more than just a productivity machine slowly stealing
+            everyone’s will to live. For me, creative tech is about building small worlds, visual systems, and
+            experiences
+            that feel personal, even when they are made with code, algorithms, or tools that sound like they were named
+            by
+            a committee of exhausted robots.</p>
+          <div class="d-grid gap-3 d-sm-flex mt-4">
+            <!-- <button type="button" class="btn btn-outline-light"><a href="./contact">Contact Me</a></div> -->
+            <a href="./contact" class="btn btn-outline-light btn-lg px-4">Contact Me</a>
           </div>
         </div>
       </div>
-
-      <!-- RIGHT: NFT metadata fields -->
-      <div class="d-flex flex-column gap-3">
-
-        <div class="d-flex flex-column gap-2">
-          <h4 class="fw-normal mb-1">NFT Name:</h4>
-          <p class="text-muted mb-0">Arc Toroid</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <h4 class="fw-normal mb-1">Description:</h4>
-          <p class="text-muted mb-0">Generative 3D toroidal form — Processing sketch series</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <h4 class="fw-normal mb-1">Editions:</h4>
-          <p class="text-muted mb-0">1 / 1,000</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <h4 class="fw-normal mb-1">Price:</h4>
-          <p class="text-muted mb-0">0.5 ETH</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <h4 class="fw-normal mb-1">Opens:</h4>
-          <p class="text-muted mb-0">June 2026</p>
-        </div>
-
-      </div>
     </div>
-  </div>
 
 
 
-  <!-- ##### ABOUT ##### -->
-  <div id="about" class="container px-4 py-5">
-    <h2 class="pb-2 mb-5 text-center">About the Artist</h2>
-    <!-- <p class="lead">Founding Artist</p> -->
-    <div class="row g-5 align-items-start">
-      <div class="col-10 col-sm-8 col-lg-4">
-        <div class="card border-dark">
-          <img src="./images/artist-photo.png" class="card-img-top" alt="Nic Nurge">
-          <div class="card-body text-center text-dark">
-            <h5 class="card-title">Nic Nurge</h5>
-            <p class="card-text text-muted">Digital Artist & Developer</p>
-            <!-- <button type="button" class="btn btn-primary">Artist's Profile</button> -->
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <p>I’m a cybersecurity leader by day, creative technology student by night, and apparently a founding artist now
-          because the internet lets us invent titles and put them on cards. My work usually starts somewhere between
-          code, systems, pixels, and “what happens if I break this in an interesting way?” I’m drawn to projects that
-          mix structure with weirdness, especially when I can take something technical and turn it into something people
-          might actually want to look at.</p>
-        <p>A lot of my creative work lives in the space between digital art, Web3, generative systems, and interactive
-          design. I like the idea of using technology as more than just a productivity machine slowly stealing
-          everyone’s will to live. For me, creative tech is about building small worlds, visual systems, and experiences
-          that feel personal, even when they are made with code, algorithms, or tools that sound like they were named by
-          a committee of exhausted robots.</p>
-        <div class="d-grid gap-3 d-sm-flex mt-4">
-          <!-- <button type="button" class="btn btn-outline-light"><a href="./contact">Contact Me</a></div> -->
-          <a href="./contact" class="btn btn-outline-light btn-lg px-4">Contact Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!-- ##### FOOTER ##### -->
 
-
-
-  <!-- ##### FOOTER ##### -->
-
-     <%- include('footer') %>
+    <%- include('footer') %>
 
 
 
 
-  <!-- ##### SCRIPTS / BOOTSTRAP JS ##### -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
-  <script type="module" src="./js/index.js"></script>
+      <!-- ##### SCRIPTS / BOOTSTRAP JS ##### -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+      <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

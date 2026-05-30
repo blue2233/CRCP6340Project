@@ -35,3 +35,18 @@ app.post("/mail", async (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 });
+
+
+// ##### /projects route - list of all projects (placeholder) #####
+app.get("/projects", async (req, res) => {
+  // TODO: replace with real DB query
+  const projectArray = ["Project 1", "Project 2", "Project 3"];
+  res.render("projects.ejs", { projectArray });
+});
+
+// ##### /project/:id route - details for a specific project (placeholder) #####
+app.get("/project/:id", (req, res) => {
+  const which = req.params.id;
+  // TODO: replace with real DB query using `which` as the lookup key
+  res.render("project.ejs", { which });
+});

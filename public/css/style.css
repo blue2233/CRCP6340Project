@@ -22,9 +22,14 @@ body {
 }
 
 
-
 html {
   scroll-behavior: smooth;
+}
+
+
+/* adds spacing between header and first section, and between sections */
+header + * {
+    margin-top: 2rem;
 }
 
 
