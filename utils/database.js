@@ -33,3 +33,8 @@ export async function getAllProjects() {
   const [rows] = await pool.query(`SELECT * FROM projects;`);
   return rows;
 }
+
+export async function getProjectById(id) {
+  const [rows] = await pool.query(`SELECT * FROM projects WHERE id = ?;`, [id]);
+  return rows[0];
+}
