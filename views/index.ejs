@@ -55,10 +55,10 @@
         <!-- LEFT: project image + card info -->
         <div class="col-10 col-sm-8 col-lg-6">
           <div class="card border-dark">
-            <img src="./images/arc-toroid.png" class="card-img-top" alt="Arc Toroid">
+            <img src="<%= featuredProject.img_url %>" class="card-img-top" alt="Arc Toroid">
             <div class="card-body text-center text-dark">
-              <h5 class="card-title">Arc Toroid</h5>
-              <p class="card-text text-muted">masterNordak</p>
+              <h5 class="card-title"><%- featuredProject.project_name %></h5>
+              <p class="card-text text-muted"><%- featuredProject.artist_name %></p>
             </div>
           </div>
         </div>
@@ -67,34 +67,46 @@
         <div class="d-flex flex-column gap-3">
 
           <div class="d-flex flex-column gap-2">
-            <h4 class="fw-normal mb-1">NFT Name:</h4>
-            <p class="text-muted mb-0">Arc Toroid</p>
+            <h4 class="fw-normal mb-1 featured-label">NFT Name:</h4>
+            <p class="featured-value mb-0"><%= featuredProject.project_name %></p>
           </div>
 
           <div class="d-flex flex-column gap-2">
-            <h4 class="fw-normal mb-1">Description:</h4>
-            <p class="text-muted mb-0">Generative 3D toroidal form — Processing sketch series</p>
+            <h4 class="fw-normal mb-1 featured-label">Description:</h4>
+            <p class="featured-value mb-0"><%= featuredProject.description %></p>
           </div>
 
           <div class="d-flex flex-column gap-2">
-            <h4 class="fw-normal mb-1">Editions:</h4>
-            <p class="text-muted mb-0">1 / 1,000</p>
+            <h4 class="fw-normal mb-1 featured-label">Quantity:</h4>
+            <p class="featured-value mb-0"><%= featuredProject.quantity %></p>
           </div>
 
           <div class="d-flex flex-column gap-2">
-            <h4 class="fw-normal mb-1">Price:</h4>
-            <p class="text-muted mb-0">0.5 ETH</p>
+            <h4 class="fw-normal mb-1 featured-label">Price in ETH:</h4>
+            <p class="featured-value mb-0"><%= featuredProject.price %></p>
           </div>
 
           <div class="d-flex flex-column gap-2">
-            <h4 class="fw-normal mb-1">Opens:</h4>
-            <p class="text-muted mb-0">June 2026</p>
+            <h4 class="fw-normal mb-1 featured-label">Opens:</h4>
+            <p class="featured-value mb-0"><%= featuredProject.opens %></p>
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <h4 class="fw-normal mb-1 featured-label">Royalties:</h4>
+            <p class="featured-value mb-0"><%= featuredProject.royalties %></p>
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <h4 class="fw-normal mb-1 featured-label">Status:</h4>
+            <p class="text-muted mb-0">
+              <%= featuredProject.status %>
+            </p>
           </div>
 
           <div class="d-flex flex-column gap-3"></div>
 
           <div class="d-flex flex-column gap-2 mt-3">
-            <a href="/project/1" class="btn btn-outline-light">Go to this project</a>
+            <a href="/project/<%= featuredProject.id %>" class="btn btn-outline-light">Go to this project</a>
             <a href="/projects" class="btn btn-outline-light">See all projects</a>
           </div>
 

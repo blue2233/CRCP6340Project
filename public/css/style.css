@@ -48,10 +48,32 @@ html {
 }
 
 
-/* adds spacing between header and first section, and between sections */
+/* Adds spacing between header and first section, and between sections */
 header + * {
     margin-top: 2rem;
 }
+
+/* Yellow label text for Featured section headings */
+.featured-label {
+  color: #00f5ff;
+  text-shadow:
+    0 0 5px #00f5ff,
+    0 0 15px #00f5ff,
+    0 0 30px #00f5ff;
+}
+
+/* Cyan value text for Featured section data — matches h2 glow */
+.featured-value {
+  color: #F9ED69;
+  text-shadow:
+    0 0 5px #F9ED69,
+    0 0 15px #F9ED69,
+    0 0 30px #F9ED69;
+}
+
+
+
+
 
 
 

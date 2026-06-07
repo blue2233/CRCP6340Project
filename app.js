@@ -12,10 +12,10 @@ app.use(express.static("public"));
 
 app.get("/", async (req, res, next) => {
   try {
-    const projects = await db.getAllProjects();
+    const projects = await db.getAllProjects(); // fetch all projects from the DB
     console.log(projects);
-    const featuredRand = Math.floor(Math.random() * projects.length);
-    res.render("index.ejs", { featuredProject: projects[featuredRand] });
+    const featuredRand = Math.floor(Math.random() * projects.length); // pick a random featured project from DB
+    res.render("index.ejs", { featuredProject: projects[featuredRand] }); // send that one project to the template
   } catch (err) {
     next(err);
   }
