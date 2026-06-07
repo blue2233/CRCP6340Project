@@ -6,8 +6,8 @@
 html {
     box-sizing: border-box;
 }
-*, 
-*:before, 
+*,
+*:before,
 *:after {
     box-sizing: inherit;
 }
@@ -268,9 +268,3 @@ footer img {
 footer img:hover {
   filter: drop-shadow(0 0 14px rgba(0, 245, 255, 0.9));
 }
-
-
-
-
-
-
