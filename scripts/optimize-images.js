@@ -14,6 +14,10 @@ const tasks = [
   { input: 'public/images/diffReact.png', output: 'public/images/diffReact.webp', resize: { width: 800, height: 800 } },
   // purpleOrangeWidget: project card image, same sizing as arc-toroid
   { input: 'public/images/purpleOrangeWidget.png', output: 'public/images/purpleOrangeWidget.webp', resize: { width: 800, height: 800 } },
+  // aetherLattice: project card image, same sizing as arc-toroid
+  { input: 'public/images/aetherLattice.png', output: 'public/images/aetherLattice.webp', resize: { width: 800, height: 800 } },
+  // fluxVortex: project card image, same sizing as arc-toroid
+  { input: 'public/images/fluxVortex.png', output: 'public/images/fluxVortex.webp', resize: { width: 800, height: 800 } },
 ];
 
 for (const task of tasks) {

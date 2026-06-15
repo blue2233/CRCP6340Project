@@ -10,7 +10,15 @@ UPDATE projects SET
   active = 1
 WHERE id = 1;
 
-UPDATE projects SET img_url = '/images/diffReact.webp' WHERE id = 2;
+UPDATE projects SET
+  project_name = 'Aether Lattice',
+  img_url = '/images/aetherLattice.webp',
+  project_description = 'Generative fractal crystal network seeded p5.js-style sketch series'
+WHERE id = 2;
 
-UPDATE projects SET img_url = '/images/purpleOrangeWidget.webp' WHERE id = 3;
+UPDATE projects SET
+  project_name = 'Flux Vortex',
+  img_url = '/images/fluxVortex.webp',
+  project_description = 'Seeded generative flow-field vortex formed from glowing particle trails, ember light, and violet turbulence.'
+WHERE id = 3;
 
