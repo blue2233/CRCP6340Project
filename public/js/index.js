@@ -11,6 +11,12 @@
   });
 
   async function connectWallet() {
+    if (typeof window.ethereum === "undefined") {
+      connect.innerHTML = "No Wallet Found";
+      console.error("No Ethereum wallet detected. Please install MetaMask.");
+      return;
+    }
+
     await window.ethereum
       .request({ method: "eth_requestAccounts" })
       .then((data) => {
