@@ -1,6 +1,6 @@
 UPDATE projects SET
   project_name = 'Arc Toroid',
-  img_url = '/images/arc-toroid.png',
+  img_url = '/images/arc-toroid.webp',
   project_description = 'Generative 3D toroidal form — Processing sketch series',
   quantity = 1000,
   price_eth = 0.5,
@@ -10,4 +10,7 @@ UPDATE projects SET
   active = 1
 WHERE id = 1;
 
+UPDATE projects SET img_url = '/images/diffReact.webp' WHERE id = 2;
+
+UPDATE projects SET img_url = '/images/purpleOrangeWidget.webp' WHERE id = 3;
 
