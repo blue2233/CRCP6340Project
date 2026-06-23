@@ -53,22 +53,22 @@ header + * {
     margin-top: 2rem;
 }
 
-/* Yellow label text for Featured section headings */
+/* Cyan label text for Featured section headings */
 .featured-label {
   color: #00f5ff;
   text-shadow:
-    0 0 5px #00f5ff,
-    0 0 15px #00f5ff,
-    0 0 30px #00f5ff;
+    0 0 5px rgba(0, 245, 255, 0.25),
+    0 0 15px rgba(0, 245, 255, 0.15),
+    0 0 30px rgba(0, 245, 255, 0.08);
 }
 
-/* Cyan value text for Featured section data — matches h2 glow */
+/* Yellow value text for Featured section data */
 .featured-value {
   color: #F9ED69;
   text-shadow:
-    0 0 5px #F9ED69,
-    0 0 15px #F9ED69,
-    0 0 30px #F9ED69;
+    0 0 5px rgba(249, 237, 105, 0.25),
+    0 0 15px rgba(249, 237, 105, 0.15),
+    0 0 30px rgba(249, 237, 105, 0.08);
 }
 
 

@@ -5,6 +5,7 @@ dotenv.config();
 import * as db from "./utils/database.js";
 
 const app = express();
+app.use(cors());
 const port = 3000;
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -54,6 +55,10 @@ app.post("/mail", async (req, res) => {
     .catch(() => {
       res.send({ result: "failure" });
     });
+});
+
+app.use((req, res, next) => {
+  res.status(404).send("Sorry can't find that!");
 });
 
 app.use((err, req, res, next) => {

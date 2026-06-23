@@ -12,7 +12,7 @@
     "url": "git+https://github.com/blue2233/CRCP6340Project.git"
   },
   "license": "MIT",
-  "author": "Nic Nurge",
+  "author": "masterNordak",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,13 +21,14 @@
   },
   "devDependencies": {
     "nodemon": "3.1.14",
-    "sharp": "^0.35.1"
+    "sharp": "^0.35.2"
   },
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
-    "mysql2": "^3.22.4",
-    "nodemailer": "^8.0.7"
+    "mysql2": "^3.22.5",
+    "nodemailer": "^9.0.1"
   }
 }

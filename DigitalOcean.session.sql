@@ -1,0 +1,2 @@
+use defaultdb;
+show tables;
