@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import * as utils from "./utils/utils.js";
 dotenv.config();
@@ -6,7 +7,7 @@ import * as db from "./utils/database.js";
 
 const app = express();
 app.use(cors());
-const port = 3000;
+const port = 8080;
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.static("public"));
