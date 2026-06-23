@@ -10,6 +10,37 @@
     connectWallet();
   });
 
+  const mintBtn = document.querySelector("#mint-button");
+  if (mintBtn) {
+    mintBtn.addEventListener("click", () => {
+      if (!userAddress) {
+        connect.click();
+        return;
+      }
+      document.querySelector("#modal-project-name").textContent = mintBtn.dataset.name;
+      document.querySelector("#modal-price").textContent = mintBtn.dataset.price;
+      document.querySelector("#modal-wallet").textContent =
+        userAddress.substring(0, 6) + "..." + userAddress.substring(38, 42);
+      document.querySelector("#modal-status").style.display = "none";
+      const confirmBtn = document.querySelector("#confirm-mint-btn");
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = "Confirm";
+      new bootstrap.Modal(document.getElementById("mint-modal")).show();
+    });
+
+    document.querySelector("#confirm-mint-btn").addEventListener("click", () => {
+      const confirmBtn = document.querySelector("#confirm-mint-btn");
+      const status = document.querySelector("#modal-status");
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = "Submitting...";
+      setTimeout(() => {
+        status.style.display = "block";
+        status.textContent = "Transaction submitted! Your mint is pending confirmation.";
+        confirmBtn.textContent = "Submitted";
+      }, 1500);
+    });
+  }
+
   async function connectWallet() {
     if (typeof window.ethereum === "undefined") {
       connect.innerHTML = "No Wallet Found";
