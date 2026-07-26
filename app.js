@@ -5,6 +5,11 @@ import * as utils from "./utils/utils.js";
 dotenv.config();
 import * as db from "./utils/database.js";
 
+// Initialize the data arrays
+let projects = [];
+let contracts = [];
+let mints = [];
+
 const app = express();
 app.use(cors());
 const port = 8080;
@@ -13,34 +18,47 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/", async (req, res, next) => {
-  try {
-    const projects = await db.getAllProjects(); // fetch all projects from the DB
-    console.log(projects);
-    const featuredRand = Math.floor(Math.random() * projects.length); // pick a random featured project from DB
-    res.render("index.ejs", { featuredProject: projects[featuredRand] }); // send that one project to the template
-  } catch (err) {
-    next(err);
-  }
+  await db
+    .connect()
+    .then(async () => {
+      // query the databse for project records
+      projects = await db.getAllProjects();
+      contracts = [];
+      mints = [];
+      projects.forEach((item) => {
+        contracts.push(item.contractAddress);
+        mints.push(0); // init parallel array
+      });
+      let featuredRand = Math.floor(Math.random() * projects.length);
+      res.render("index.ejs", {
+        featuredProject: projects[featuredRand],
+        contracts: contracts,
+        mints: mints,
+        projects: projects,
+      });
+    })
+    .catch(next);
 });
 
-app.get("/projects", async (req, res, next) => {
-  try {
-    const projectArray = await db.getAllProjects();
-    res.render("projects.ejs", { projectArray });
-  } catch (err) {
-    next(err);
-  }
+app.get("/projects", (req, res) => {
+  res.render("projects.ejs", {
+    contracts: contracts,
+    mints: mints,
+    projects: projects,
+      });
 });
 
-app.get("/project/:id", async (req, res, next) => {
-  try {
-    const which = req.params.id;
-    const project = await db.getProjectById(which);
-    if (!project) throw new Error("No project with that ID");
-    res.render("project.ejs", { project, which });
-  } catch (err) {
-    next(err);
+app.get("/project/:id", (req, res) => {
+  let id = req.params.id;
+  if (id > projects.length) {
+    throw new Error("No project with that ID");
   }
+  res.render("project.ejs", { 
+    project: projects[id - 1], 
+    contracts: contracts,
+    mints: mints,
+    projects: projects,
+      });
 });
 
 app.get("/contact", (req, res) => {
@@ -71,8 +89,13 @@ app.use((err, req, res, next) => {
   res.render("error.ejs", { msg });
 });
 
-db.connect().then(() => {
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-  });
+// db.connect().then(() => {
+//   app.listen(port, () => {
+//     console.log(`Example app listening on port ${port}`);
+//   });
+// });
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
+

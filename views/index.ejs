@@ -10,36 +10,24 @@
   <meta name="author" content="masterNordak">
   <meta name="description"
     content="Mint original digital art NFTs by masterNordak. Browse featured generative art collections, view project details, and connect your wallet to mint on Web3.">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" as="style"
     onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet"></noscript>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
-
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body id="top">
   <div class="b-example-divider"></div>
-
-
-
   <!-- ##### HEADER ##### -->
-
   <%- include('header') %>
-
-
-
-
     <!-- ##### HERO / SPLASH SCREEN ##### -->
     <div class="container-fluid px-0">
       <div class="card text-bg-dark border-0 bg-transparent rounded-0 py-5">
@@ -52,18 +40,12 @@
         </div>
       </div>
     </div>
-
-
-
     <!-- ##### FEATURED ##### -->
     <div id="featured" class="container col-xxl-8 px-4 py-5"></div>
     <div class="b-example-divider"></div>
-
     <div id="featured" class="container px-4 py-5">
       <h2 class="pb-2 text-center">Featured Project</h2>
-
       <div class="row row-cols-1 row-cols-md-2 align-items-md-start g-5 py-5">
-
         <!-- LEFT: project image + card info -->
         <div class="col-10 col-sm-8 col-lg-6">
           <div class="card border-dark">
@@ -72,64 +54,50 @@
               <h5 class="card-title"><%- featuredProject.project_name %></h5>
               <p class="card-text text-muted"><%- featuredProject.artist_name %></p>
             </div>
-
-
-
-
             <div class="d-flex flex-row gap-2 mt-3 mb-3 px-3 justify-content-center">
               <a href="/project/<%= featuredProject.id %>" class="btn btn-outline-light btn-sm flex-fill">View
                 Project</a>
               <a href="/projects" class="btn btn-outline-light btn-sm flex-fill">See All Projects</a>
             </div>
-
-
-
           </div>
-
+          <!-- Data for client-side JS (wallet/mint) -->
+          <div id="contracts" class="d-none"><%= contracts %></div>
+          <div id="mints" class="d-none"><%= mints %></div>
+          <div id="projects" class="d-none"><%= JSON.stringify(projects) %></div>
         </div>
-
         <!-- RIGHT: NFT metadata fields -->
         <div class="col-12 col-md-6 d-flex flex-column gap-3">
-
-
           <div class="d-flex flex-column gap-2">
             <h4 class="fw-normal mb-1 featured-label">NFT Name:</h4>
             <p>
               <%= featuredProject.project_name %>
             </p>
           </div>
-
           <div class="d-flex flex-column gap-2">
             <h4 class="fw-normal mb-1 featured-label">Description:</h4>
             <p>
               <%= featuredProject.project_description %>
             </p>
           </div>
-
           <div class="d-flex flex-column gap-2">
             <h4 class="fw-normal mb-1 featured-label">Quantity:</h4>
             <p>
               <%= featuredProject.quantity %>
             </p>
-            </h4>
+            </div>
           </div>
-
-          <div class="d-flex flex-column gap-2">
+            <div class="d-flex flex-column gap-2">
             <h4 class="fw-normal mb-1 featured-label">Price in ETH: </h4>
             <p>
               <%= featuredProject.price_eth %> ETH
             </p>
           </div>
-
           <div class="d-flex flex-column gap-2 py-1">
             <h4 class="fw-normal mb-1 featured-label">Royalties:</h4>
             <p>The artist will get <span class="featured-value">
                 <%= featuredProject.royalty_percent %>%
               </span> of secondary sales</p>
-
-
           </div>
-
           <div class="d-flex flex-column gap-2">
             <h4 class="fw-normal mb-1 featured-label">Opens: </h4>
             <p>
@@ -137,27 +105,17 @@
                 year: 'numeric' , hour: 'numeric' , minute: '2-digit' , timeZoneName: 'short' }) %>
             </p>
           </div>
-
-
-
           <div class="d-flex flex-column gap-2">
             <h4 class="fw-normal mb-1 featured-label">Status: <span class="featured-value fs-6">
                 <%= featuredProject.active ? 'Active' : 'Inactive' %>
               </span></h4>
             <p>0 of <%= featuredProject.quantity %> minted</p>
           </div>
-
           <div class="d-flex flex-column gap-3"></div>
-
-
-
         </div>
       </div>
     </div>
-
-
-
-    <!-- ##### ABOUT ##### -->
+    <!-- ##### ABOUT ME ##### -->
     <div id="about" class="container px-4 py-5">
       <h2 class="pb-2 mb-5 text-center">About the Artist</h2>
       <!-- <p class="lead">Founding Artist</p> -->
@@ -168,7 +126,6 @@
             ">
             <div class="card-body text-center text-dark">
               <h5 class="card-title">masterNordak
-
               </h5>
               <p class="card-text text-muted">Digital Artist & Developer</p>
               <!-- <button type="button" class="btn btn-primary">Artist's Profile</button> -->
@@ -197,21 +154,12 @@
         </div>
       </div>
     </div>
-
-
-
     <!-- ##### FOOTER ##### -->
-
     <%- include('footer') %>
-
-
-
-
       <!-- ##### SCRIPTS / BOOTSTRAP JS ##### -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
       <script type="module" src="./js/index.js"></script>
 </body>
-
 </html>
