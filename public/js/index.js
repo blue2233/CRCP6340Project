@@ -109,6 +109,19 @@ connect.addEventListener("click", async () => {
 });
 if (isConnected) {
   await updateMints();
+  updateFeaturedMintCount();
+}
+
+// The homepage's Featured section used to hardcode "0 of X minted" with no
+// way to update it - unlike /project/:id, which already reads live contract
+// data. Mirrors that here: #featured-index (only present on index.ejs)
+// says which position in mintList corresponds to the featured project.
+function updateFeaturedMintCount() {
+  const featuredIndexEl = document.querySelector("#featured-index");
+  const countEl = document.querySelector("#featured-mint-count");
+  if (!featuredIndexEl || !countEl) return;
+  const featuredIndex = parseInt(featuredIndexEl.innerHTML);
+  countEl.innerHTML = mintList[featuredIndex];
 }
 
 // let connect = document.querySelector("#wallet-connect");

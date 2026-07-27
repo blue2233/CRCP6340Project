@@ -38,6 +38,7 @@ app.get("/", async (req, res, next) => {
       let featuredRand = Math.floor(Math.random() * projects.length);
       res.render("index.ejs", {
         featuredProject: projects[featuredRand],
+        featuredIndex: featuredRand, // position in contracts/mints/projects arrays, for client-side mint-count lookup
         contracts: contracts,
         mints: mints,
         projects: projects,
