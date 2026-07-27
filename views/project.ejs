@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+  <link rel="icon" type="image/webp" href="/images/n-favicon.webp">
   <title>Personal NFT Mint</title>
   <meta name="author" content="masterNordak">
   <meta name="description" content="A personal NFT mint for an artist.">
@@ -44,7 +44,9 @@
           <div class="row justify-content-center">
             <div class="col-12 col-md-4 mt-4">
               <div class="card m-2">
-                <img src="<%= project.img_url %>" class="card-img-top" alt="An image of the <%= project.project_name %> project" />
+                <% let projectAnimUrl = JSON.parse(project.summaryData).elements[1].anims[0].ipfs; %>
+                <iframe src="<%= projectAnimUrl %>" class="card-img-top" style="width: 100%; aspect-ratio: 1 / 1; border: 0;"
+                  title="Animated preview of <%= project.project_name %>"></iframe>
                 <div>
                   <div class="card-title">
                     <p class="h3 m-2">
@@ -57,6 +59,8 @@
                 <div class="card-footer">
                   <a id="mint-button" class="btn btn-primary">Mint</a>
                   <div id="project-id" class="d-none"><%= project.id %></div>
+                  <p id="connect-prompt" class="mt-2 mb-0 d-none" style="color: #ff00ff;">Please connect your wallet
+                    to mint.</p>
                 </div>
               </div>
             </div>
