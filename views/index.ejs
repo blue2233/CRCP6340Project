@@ -47,9 +47,11 @@
       <h2 class="pb-2 text-center">Featured Project</h2>
       <div class="row row-cols-1 row-cols-md-2 align-items-md-start g-5 py-5">
         <!-- LEFT: project image + card info -->
+        <% let featuredAnimUrl = JSON.parse(featuredProject.summaryData).elements[1].anims[0].ipfs; %>
         <div class="col-10 col-sm-8 col-lg-6">
           <div class="card border-dark">
-            <img src="<%= featuredProject.img_url %>" class="card-img-top" alt="Arc Toroid">
+            <iframe src="<%= featuredAnimUrl %>" class="card-img-top" style="width: 100%; aspect-ratio: 1 / 1; border: 0;"
+              title="Animated preview of <%= featuredProject.project_name %>"></iframe>
             <div class="card-body text-center text-dark">
               <h5 class="card-title"><%- featuredProject.project_name %></h5>
               <p class="card-text text-muted"><%- featuredProject.artist_name %></p>
