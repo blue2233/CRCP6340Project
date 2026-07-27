@@ -204,6 +204,7 @@ export async function connectWallet() {
         console.log("signer: ", signer);
         isConnected = true;
       } catch (error) {
+        console.error("connectWallet failed:", error);
         connect.innerHTML = "Check Metamask";
         isConnected = false;
       }
