@@ -32,9 +32,11 @@ if (isConnected) {
 
 document.querySelector("#mint-button").addEventListener("click", () => {
   if (!isConnected) {
+    document.querySelector("#connect-prompt").classList.remove("d-none");
     document.querySelector("#wallet-connect").click();
     return;
   }
+  document.querySelector("#connect-prompt").classList.add("d-none");
   doMintBehaviors();
 });
 
