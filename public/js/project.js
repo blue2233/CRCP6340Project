@@ -25,13 +25,18 @@ if (isConnected) {
   document.querySelector("#mint-quant").innerHTML = mintList[id];
   showMints();
   updateMintMessage();
-  document.querySelector("#mint-button").addEventListener("click", () => {
-    doMintBehaviors();
-  });
 } else {
   mintMessage = "Please connect your wallet, then refresh";
   document.querySelector("#mint-message").innerHTML = mintMessage;
 }
+
+document.querySelector("#mint-button").addEventListener("click", () => {
+  if (!isConnected) {
+    document.querySelector("#wallet-connect").click();
+    return;
+  }
+  doMintBehaviors();
+});
 
 // Runs the actual mint transaction for this project: looks up the next
 // token's metadata URI and the current mint price from the contract, submits
