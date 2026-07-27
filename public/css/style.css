@@ -146,6 +146,10 @@ h3, h4 {
 
 /* ##### NEON CARDS ##### */
 
+.card:not(.border-dark) {
+  background-color: #0B1026;
+}
+
 .card.border-dark {
   background-color: #0B1026;
   border: 1px solid #00f5ff !important;
