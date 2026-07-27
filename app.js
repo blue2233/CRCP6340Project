@@ -17,18 +17,24 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.static("public"));
 
+// Loads the project records from the database into the shared
+// projects/contracts/mints arrays. Called once at startup so every route
+// has data available immediately after a restart, and again on each "/"
+// hit to keep it fresh.
+async function loadProjects() {
+  await db.connect();
+  projects = await db.getAllProjects();
+  contracts = [];
+  mints = [];
+  projects.forEach((item) => {
+    contracts.push(item.contractAddress);
+    mints.push(0); // init parallel array
+  });
+}
+
 app.get("/", async (req, res, next) => {
-  await db
-    .connect()
-    .then(async () => {
-      // query the databse for project records
-      projects = await db.getAllProjects();
-      contracts = [];
-      mints = [];
-      projects.forEach((item) => {
-        contracts.push(item.contractAddress);
-        mints.push(0); // init parallel array
-      });
+  await loadProjects()
+    .then(() => {
       let featuredRand = Math.floor(Math.random() * projects.length);
       res.render("index.ejs", {
         featuredProject: projects[featuredRand],
@@ -89,13 +95,13 @@ app.use((err, req, res, next) => {
   res.render("error.ejs", { msg });
 });
 
-// db.connect().then(() => {
-//   app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`);
-//   });
-// });
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+loadProjects()
+  .catch((err) => {
+    console.error("Failed to load initial project data:", err);
+  })
+  .finally(() => {
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`);
+    });
+  });
 
