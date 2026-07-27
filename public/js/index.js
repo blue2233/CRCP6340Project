@@ -129,12 +129,60 @@ if (typeof window.ethereum !== "undefined") {
         userAddress.substring(0, 5) + "..." + userAddress.substring(38, 42);
     }
   });
+  // MetaMask can leave a site connected on whichever chain it was first
+  // authorized on (e.g. Mainnet) even after the extension's own network
+  // dropdown is switched to Amoy elsewhere - the two aren't the same thing.
+  // Reloading on chainChanged keeps the page's provider/signer in sync
+  // instead of silently calling contracts on the wrong chain.
+  window.ethereum.on("chainChanged", () => {
+    window.location.reload();
+  });
+}
+
+// Amoy = Polygon's testnet, chainId 80002 (0x13882) - where this project's
+// contracts are actually deployed.
+const AMOY_CHAIN_ID = "0x13882";
+
+async function ensureAmoyNetwork() {
+  const currentChainId = await ethereum.request({ method: "eth_chainId" });
+  if (currentChainId === AMOY_CHAIN_ID) return true;
+  try {
+    await ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: AMOY_CHAIN_ID }],
+    });
+    return true;
+  } catch (switchError) {
+    if (switchError.code === 4902) {
+      // 4902 = this chain isn't added to the wallet yet
+      await ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: AMOY_CHAIN_ID,
+            chainName: "Polygon Amoy Testnet",
+            nativeCurrency: { name: "POL", symbol: "POL", decimals: 18 },
+            rpcUrls: ["https://rpc-amoy.polygon.technology"],
+            blockExplorerUrls: ["https://amoy.polygonscan.com"],
+          },
+        ],
+      });
+      return true;
+    }
+    return false;
+  }
 }
 
 async function connectWallet() {
   if (typeof window.ethereum !== "undefined") {
     try {
       await ethereum.request({ method: "eth_requestAccounts" });
+      const onAmoy = await ensureAmoyNetwork();
+      if (!onAmoy) {
+        connect.innerHTML = "Switch to Amoy";
+        isConnected = false;
+        return;
+      }
       connect.innerHTML = "Connected";
       provider = new ethers.providers.Web3Provider(window.ethereum); // ethers = engine beneath the hood of hardhat that allows us to interact using JavaScript to interact with the RPC node of the Ethereum network
       signer = provider.getSigner();
