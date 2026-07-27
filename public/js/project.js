@@ -3,12 +3,14 @@
 import { ethers } from "../js/ethers-5.2.esm.js";
 import { contractABI } from "../js/contractABI.js";
 import {
+  provider,
   signer,
   contractList,
   mintList,
   projectList,
   updateMints,
   isConnected,
+  connectWallet,
 } from "../js/index.js";
 import { tokenCard } from "../js/tokenCard.js";
 
@@ -30,10 +32,22 @@ if (isConnected) {
   document.querySelector("#mint-message").innerHTML = mintMessage;
 }
 
-document.querySelector("#mint-button").addEventListener("click", () => {
+document.querySelector("#mint-button").addEventListener("click", async () => {
   if (!isConnected) {
+    // Previously this just simulated a click on the wallet-connect button
+    // and gave up immediately, without waiting to see whether the
+    // connection succeeded - so the page kept showing stale "please
+    // connect" messaging even after the wallet actually connected a
+    // moment later. Now we actually wait for it and refresh the mint
+    // data/status once it resolves, instead of leaving the page stuck.
     document.querySelector("#connect-prompt").classList.remove("d-none");
-    document.querySelector("#wallet-connect").click();
+    await connectWallet();
+    if (!isConnected) return;
+    document.querySelector("#connect-prompt").classList.add("d-none");
+    await updateMints();
+    document.querySelector("#mint-quant").innerHTML = mintList[id];
+    showMints();
+    await updateMintMessage();
     return;
   }
   document.querySelector("#connect-prompt").classList.add("d-none");
@@ -65,7 +79,21 @@ async function doMintBehaviors() {
   console.log("Mint price: ", mintPrice);
   let value = mintPrice.toString();
   console.log("Value: " + value + " GWEI.");
-  let token = await contract.mintTo(base_uri, { value: value });
+  // Amoy currently enforces a 25 gwei minimum priority fee ("gas tip cap");
+  // MetaMask's default fee suggestion has been coming in under that,
+  // causing "transaction gas price below minimum" failures. Pin the tip
+  // above the floor ourselves instead of relying on the wallet's default.
+  const minPriorityFee = ethers.utils.parseUnits("30", "gwei");
+  const feeData = await provider.getFeeData();
+  const maxPriorityFeePerGas =
+    feeData.maxPriorityFeePerGas && feeData.maxPriorityFeePerGas.gt(minPriorityFee)
+      ? feeData.maxPriorityFeePerGas
+      : minPriorityFee;
+  const maxFeePerGas =
+    feeData.maxFeePerGas && feeData.maxFeePerGas.gt(maxPriorityFeePerGas)
+      ? feeData.maxFeePerGas
+      : maxPriorityFeePerGas.mul(2);
+  let token = await contract.mintTo(base_uri, { value: value, maxFeePerGas, maxPriorityFeePerGas });
   document.querySelector("#mint-button").innerHTML = "Confirming...";
   await token.wait(1);
   document.querySelector("#mint-button").innerHTML = "Almost done...";

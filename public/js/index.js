@@ -173,36 +173,49 @@ async function ensureAmoyNetwork() {
   }
 }
 
-async function connectWallet() {
-  if (typeof window.ethereum !== "undefined") {
-    try {
-      await ethereum.request({ method: "eth_requestAccounts" });
-      const onAmoy = await ensureAmoyNetwork();
-      if (!onAmoy) {
-        connect.innerHTML = "Switch to Amoy";
+// Guards against firing a second eth_requestAccounts while one is still
+// pending - MetaMask rejects overlapping requests outright ("already
+// pending for origin") instead of queuing them, which happened when the
+// mint button's "connect first" fallback fired on top of the page's
+// auto-connect, or from impatient repeat clicks.
+let isConnecting = false;
+
+export async function connectWallet() {
+  if (isConnecting) return;
+  isConnecting = true;
+  try {
+    if (typeof window.ethereum !== "undefined") {
+      try {
+        await ethereum.request({ method: "eth_requestAccounts" });
+        const onAmoy = await ensureAmoyNetwork();
+        if (!onAmoy) {
+          connect.innerHTML = "Switch to Amoy";
+          isConnected = false;
+          return;
+        }
+        connect.innerHTML = "Connected";
+        provider = new ethers.providers.Web3Provider(window.ethereum); // ethers = engine beneath the hood of hardhat that allows us to interact using JavaScript to interact with the RPC node of the Ethereum network
+        signer = provider.getSigner();
+        const accounts = await ethereum.request({ method: "eth_accounts" });
+        userAddress = "" + accounts[0];
+        console.log("userAddress: ", userAddress);
+        let walletString =
+          userAddress.substring(0, 5) + "..." + userAddress.substring(38, 42);
+        connect.innerHTML = walletString;
+        console.log("provider: ", provider);
+        console.log("wallet: ", userAddress);
+        console.log("signer: ", signer);
+        isConnected = true;
+      } catch (error) {
+        connect.innerHTML = "Check Metamask";
         isConnected = false;
-        return;
       }
-      connect.innerHTML = "Connected";
-      provider = new ethers.providers.Web3Provider(window.ethereum); // ethers = engine beneath the hood of hardhat that allows us to interact using JavaScript to interact with the RPC node of the Ethereum network
-      signer = provider.getSigner();
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-      userAddress = "" + accounts[0];
-      console.log("userAddress: ", userAddress);
-      let walletString =
-        userAddress.substring(0, 5) + "..." + userAddress.substring(38, 42);
-      connect.innerHTML = walletString;
-      console.log("provider: ", provider);
-      console.log("wallet: ", userAddress);
-      console.log("signer: ", signer);
-      isConnected = true;
-    } catch (error) {
-      connect.innerHTML = "Check Metamask";
+    } else {
+      connect.innerHTML = "Please connect MetaMask";
       isConnected = false;
     }
-  } else {
-    connect.innerHTML = "Please connect MetaMask";
-    isConnected = false;
+  } finally {
+    isConnecting = false;
   }
 }
 
