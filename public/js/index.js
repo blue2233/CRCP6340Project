@@ -87,8 +87,12 @@ export let projectList = JSON.parse(
   document.querySelector("#projects").innerHTML
 );
 export let isConnected = false;
-
-
+// Guards against firing a second eth_requestAccounts while one is still
+// pending - MetaMask rejects overlapping requests outright ("already
+// pending for origin") instead of queuing them. Declared here, before
+// connectWallet() is first called below, since `let` isn't usable until
+// its declaration actually runs.
+let isConnecting = false;
 
 let connect = document.querySelector("#wallet-connect");
 
@@ -172,13 +176,6 @@ async function ensureAmoyNetwork() {
     return false;
   }
 }
-
-// Guards against firing a second eth_requestAccounts while one is still
-// pending - MetaMask rejects overlapping requests outright ("already
-// pending for origin") instead of queuing them, which happened when the
-// mint button's "connect first" fallback fired on top of the page's
-// auto-connect, or from impatient repeat clicks.
-let isConnecting = false;
 
 export async function connectWallet() {
   if (isConnecting) return;
