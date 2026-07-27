@@ -81,11 +81,11 @@ async function doMintBehaviors() {
   // Amoy currently enforces a 25 gwei minimum priority fee ("gas tip cap");
   // MetaMask's default fee suggestion has been coming in under that,
   // causing "transaction gas price below minimum" failures. This ethers
-  // build (5.2.0) predates provider.getFeeData(), so just pin safe fixed
-  // values above the known floor instead of querying for suggestions.
-  const maxPriorityFeePerGas = ethers.utils.parseUnits("30", "gwei");
-  const maxFeePerGas = ethers.utils.parseUnits("100", "gwei");
-  let token = await contract.mintTo(base_uri, { value: value, maxFeePerGas, maxPriorityFeePerGas });
+  // build (5.2.0) predates EIP-1559 support entirely - the Contract layer
+  // rejects maxFeePerGas/maxPriorityFeePerGas overrides outright - so use
+  // the legacy flat gasPrice field instead, set comfortably above the floor.
+  const gasPrice = ethers.utils.parseUnits("50", "gwei");
+  let token = await contract.mintTo(base_uri, { value: value, gasPrice });
   document.querySelector("#mint-button").innerHTML = "Confirming...";
   await token.wait(1);
   document.querySelector("#mint-button").innerHTML = "Almost done...";
