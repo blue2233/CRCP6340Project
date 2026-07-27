@@ -94,6 +94,12 @@ export let isConnected = false;
 // its declaration actually runs.
 let isConnecting = false;
 
+// Amoy = Polygon's testnet, chainId 80002 (0x13882) - where this project's
+// contracts are actually deployed. Declared here, before connectWallet() is
+// first called below, for the same reason as isConnecting above - `const`
+// isn't usable until its declaration actually runs.
+const AMOY_CHAIN_ID = "0x13882";
+
 let connect = document.querySelector("#wallet-connect");
 
 await connectWallet();
@@ -142,10 +148,6 @@ if (typeof window.ethereum !== "undefined") {
     window.location.reload();
   });
 }
-
-// Amoy = Polygon's testnet, chainId 80002 (0x13882) - where this project's
-// contracts are actually deployed.
-const AMOY_CHAIN_ID = "0x13882";
 
 async function ensureAmoyNetwork() {
   const currentChainId = await ethereum.request({ method: "eth_chainId" });
