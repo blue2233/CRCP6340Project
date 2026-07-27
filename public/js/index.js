@@ -111,6 +111,26 @@ if (isConnected) {
 //   await updateMints();
 // }
 
+// Without this, switching the active account inside MetaMask (rather than
+// reconnecting through the page) leaves userAddress/the wallet button
+// pointing at whichever account was connected last, even though MetaMask
+// now shows a different account as active and not yet authorized for this
+// site. See scratch/bug-tracker.md - "Wallet button shows stale address
+// after switching MetaMask accounts".
+if (typeof window.ethereum !== "undefined") {
+  window.ethereum.on("accountsChanged", (accounts) => {
+    if (accounts.length === 0) {
+      userAddress = null;
+      isConnected = false;
+      connect.innerHTML = "Connect Wallet";
+    } else {
+      userAddress = accounts[0];
+      connect.innerHTML =
+        userAddress.substring(0, 5) + "..." + userAddress.substring(38, 42);
+    }
+  });
+}
+
 async function connectWallet() {
   if (typeof window.ethereum !== "undefined") {
     try {
