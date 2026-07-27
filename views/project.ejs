@@ -13,13 +13,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" as="style"
     onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet"></noscript>
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  </noscript>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  </noscript>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -30,61 +33,78 @@
     <main>
       <div class="container">
       </div>
-      <section>
-        <div class="row text-center justify-content-center">
-          <div class="col-10 mb-5">
-            <div class="row justify-content-center">
-              <div class="col-12 col-md-4 mt-4">
-                <div class="card border-dark m-2 fadein">
-                  <img src="<%= project.img_url %>" class="card-img-top" alt="<%= project.project_name %>" />
-                  <div>
-                    <div class="card-title">
-                      <h2>
-                        <%=project.project_name %>
-                      </h2>
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <a id="mint-button" class="btn btn-primary"
-                      data-name="<%= project.project_name %>"
-                      data-price="<%= project.price_eth %>">Mint</a>
+
+    <section class="justify-content-center">
+      <div id="contracts" class="d-none"><%= contracts %></div>
+      <div id="mints" class="d-none"><%= mints %></div>
+      <div id="projects" class="d-none"><%= JSON.stringify(projects) %></div>
+
+      <div class="row text-center justify-content-center">
+        <div class="col-10 mb-5">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-4 mt-4">
+              <div class="card m-2">
+                <img src=<%= `${project.img_url}`  %> class="card-img-top" alt="..." />
+                <div>
+                  <div class="card-title">
+                    <p class="h3 m-2">
+                      <strong>
+                        <%=project.project_name  %>
+                      </strong>
+                    </p>
                   </div>
                 </div>
+                <div class="card-footer">
+                  <a id="mint-button" class="btn btn-primary">Mint</a>
+                  <div id="project-id" class="d-none"><%= project.id %></div>
+                </div>
               </div>
-              <div class="cal-10 col-md-6 mt-2 text-start">
-                <p>
-                <h3 class="topic">Project name: </h3>
-                <%=project.project_name %>
-                  </p>
-                  <p>
-                  <h3 class="topic">Project description: </h3>
-                  <%=project.project_description %>
-                    </p>
-                    <div class="row">
-                      <div class="col-5">
-                        <h3 class="topic">Price in ETH: </h3>
-                        <%=project.price_eth %> ETH
-                      </div>
-                      <div class="col-5">
-                        <h3 class="topic">Quantity: </h3>
-                        <%=project.quantity %>
-                      </div>
-                    </div>
-                    <p>
-                    <h3 class="topic">Opening date: </h3>
-                    <%= new Date(project.open_date_gmt).toLocaleString('en-US', {month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short'}) %>
-                      </p>
-                      <p>
-                      <h3 class="topic">Royalties: </h3>The artist will get <%=project.royalty_percent %>% of secondary
-                        sales
-                        </p>
-                        <p>
-                        <h3 class="topic">Status: </h3>Active - 0 of <%=project.quantity %> minted</p>
+            </div>
+            <div class="col-10 col-md-6 mt-2 text-start">
+              <p>
+              <h3 class="topic">Project name: </h3><%=project.project_name  %></p>
+              <p>
+              <h3 class="topic">Project description: </h3><%=project.project_description  %></p>
+              <div class="row">
+                <div class="col-5">
+                  <h3 class="topic">Price: </h3><%= project.price_eth  %>
+                </div>
+                <div class="col-5">
+                  <h3 class="topic">Quantity: </h3><%=project.quantity  %>
+                </div>
               </div>
+              <p>
+              <h3 class="topic">Opening date: </h3><%=project.open_date_gmt  %></p>
+              <p>
+              <h3 class="topic">Royalties: </h3>The artist will get <%=project.royalty_percent  %>% of secondary sales
+              </p>
+              <p>
+              <h3 class="topic">Status: </h3><span id="status">Active - </span><span id="mint-quant"></span><span> of
+                <%=project.quantity  %> minted</span></h3>
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr class="m-2" />
+      </div>
+    </section>
+
+
+      <section class="justify-content-center">
+        <div class="text-center justify-content-center mt-5 mb-2">
+          <h2>Mints from this project</h2>
+          <p id="mint-message"></p>
+        </div>
+        <div class="mb-5">
+          <div class="row justify-content-center">
+            <div id="token-views"
+              class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3 text-center justify-content-center">
+              <!-- the client side ejs will render these dynamically from the sript -->
             </div>
           </div>
         </div>
       </section>
+
 
     </main>
 
@@ -93,32 +113,32 @@
     </div>
 
 
-<!-- Mint Modal -->
-<div class="modal fade" id="mint-modal" tabindex="-1" aria-labelledby="mintModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="background-color: #0B1026; border: 1px solid #00f0ff;">
-      <div class="modal-header" style="border-bottom: 1px solid #00f0ff;">
-        <h5 class="modal-title" id="mintModalLabel" style="color: #00f0ff;">Confirm Mint</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="color: white;">
-        <p><strong style="color: #ff00ff;">Project:</strong> <span id="modal-project-name"></span></p>
-        <p><strong style="color: #ff00ff;">Price:</strong> <span id="modal-price"></span> ETH</p>
-        <p><strong style="color: #ff00ff;">From:</strong> <span id="modal-wallet"></span></p>
-        <div id="modal-status" class="mt-3" style="display:none; color: #00f0ff;"></div>
-      </div>
-      <div class="modal-footer" style="border-top: 1px solid #00f0ff;">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" id="confirm-mint-btn" class="btn btn-primary">Confirm</button>
+    <!-- Mint Modal -->
+    <div class="modal fade" id="mint-modal" tabindex="-1" aria-labelledby="mintModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: #0B1026; border: 1px solid #00f0ff;">
+          <div class="modal-header" style="border-bottom: 1px solid #00f0ff;">
+            <h5 class="modal-title" id="mintModalLabel" style="color: #00f0ff;">Confirm Mint</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="color: white;">
+            <p><strong style="color: #ff00ff;">Project:</strong> <span id="modal-project-name"></span></p>
+            <p><strong style="color: #ff00ff;">Price:</strong> <span id="modal-price"></span> ETH</p>
+            <p><strong style="color: #ff00ff;">From:</strong> <span id="modal-wallet"></span></p>
+            <div id="modal-status" class="mt-3" style="display:none; color: #00f0ff;"></div>
+          </div>
+          <div class="modal-footer" style="border-top: 1px solid #00f0ff;">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" id="confirm-mint-btn" class="btn btn-primary">Confirm</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
-    <script type="module" src="/js/index.js"></script>
+    <script type="module" src="./js/project.js"></script>
 </body>
 
 </html>
